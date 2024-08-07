@@ -1,6 +1,9 @@
 ﻿@page "/Game"
-
+@attribute [StreamRendering(true)]
 @inject IGameServices GameService
+@inject NavigationManager NavManager
+@rendermode InteractiveServer
+
 <h3>GameList</h3>
 
 @if(games==null)
@@ -13,16 +16,23 @@ else if(games.Count==0)
 }
 else
 {
-@foreach(var gamelist in games)
-{
-    <li>Game name @gamelist.GameName</li>
-}
+    <ul>
+       @foreach(var gamelist in games)
+       {
+            <li>Game name @gamelist.GameName</li>
+       }
+    </ul>
 }
 
+<button @onclick="CreateGame" class="btn btn-primary">Create Game</button>
 @code {
     List<Game>? games = new List<Game>();
     protected override async Task OnInitializedAsync()
     {
-      games = await GameService.GetAllGames();
+        games = await GameService.GetAllGames();
+    }
+    public void CreateGame()
+    {
+        NavManager.NavigateTo("/edit-game",true);
     }
 }

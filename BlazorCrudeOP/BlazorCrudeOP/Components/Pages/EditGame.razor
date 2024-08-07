@@ -1,0 +1,19 @@
+﻿@page "/edit-game"
+@page "/edit-game/{GameId:int}"
+<h3>Create Game</h3>
+<EditForm Model="game" OnSubmit="HandelSubmit">
+    <label>Name</label>
+    <InputText @bind-Value="game.GameName">@game.GameName</InputText>
+    <button type="submit" class="btn btn-success">Submit</button>
+
+</EditForm>
+
+@code {
+    [Parameter]
+    public int gameid { get; set; }
+    Game game = new Game{ GameName = String.Empty };
+    async Task HandelSubmit()
+    {
+        //
+    }
+}

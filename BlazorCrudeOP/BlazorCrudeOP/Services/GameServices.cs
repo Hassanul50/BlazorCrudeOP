@@ -15,6 +15,7 @@ namespace BlazorCrudeOP.Services
 
         public async Task<List<Game>> GetAllGames()
         {
+            await Task.Delay(1000);
             var games = await _dataContext.Games.ToListAsync();
             return games;
         }
