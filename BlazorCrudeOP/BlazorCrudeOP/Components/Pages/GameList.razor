@@ -1,0 +1,28 @@
+﻿@page "/Game"
+
+@inject IGameServices GameService
+<h3>GameList</h3>
+
+@if(games==null)
+{
+    <span>loading...</span>
+}
+else if(games.Count==0)
+{
+    <span>no game Found</span>
+}
+else
+{
+@foreach(var gamelist in games)
+{
+    <li>Game name @gamelist.GameName</li>
+}
+}
+
+@code {
+    List<Game>? games = new List<Game>();
+    protected override async Task OnInitializedAsync()
+    {
+      games = await GameService.GetAllGames();
+    }
+}
