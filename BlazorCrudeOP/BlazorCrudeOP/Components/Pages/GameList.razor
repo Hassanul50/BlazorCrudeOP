@@ -1,5 +1,5 @@
 ﻿@page "/Game"
-
+@attribute [StreamRendering(true)]
 @inject IGameServices GameService
 <h3>GameList</h3>
 
@@ -13,10 +13,12 @@ else if(games.Count==0)
 }
 else
 {
-@foreach(var gamelist in games)
-{
-    <li>Game name @gamelist.GameName</li>
-}
+    <ul>
+       @foreach(var gamelist in games)
+       {
+            <li>Game name @gamelist.GameName</li>
+       }
+    </ul>
 }
 
 @code {
