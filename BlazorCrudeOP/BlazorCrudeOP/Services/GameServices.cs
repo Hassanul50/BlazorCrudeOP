@@ -13,6 +13,13 @@ namespace BlazorCrudeOP.Services
             _dataContext = dataContext;
         }
 
+        public async Task<Game> CreateGame(Game game)
+        {
+            _dataContext.AddAsync(game);
+            await _dataContext.SaveChangesAsync();
+            return game;
+        }
+
         public async Task<List<Game>> GetAllGames()
         {
             await Task.Delay(1000);
