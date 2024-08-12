@@ -1,0 +1,11 @@
+﻿@inject NavigationManager NavManager
+@rendermode InteractiveServer
+
+<button @onclick="CreateGame" class="btn btn-primary">Create Game</button>
+
+@code {
+    public void CreateGame()
+    {
+        NavManager.NavigateTo("/edit-game", true);
+    }
+}
